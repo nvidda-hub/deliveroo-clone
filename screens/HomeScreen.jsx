@@ -1,18 +1,35 @@
-import React, { useLayoutEffect } from 'react'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView, StyleSheet, Text, View, Image, TextInput, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import {AdjustmentsVerticalIcon, ChevronDownIcon, MagnifyingGlassIcon, UserIcon} from "react-native-heroicons/outline"
 import Categories from '../Components/Categories';
 import FeatureRow from '../Components/FeatureRow';
+import sanityClient from '../sanityConfigForFrontend';
+
 
 const HomeScreen = () => {
   const navigation = useNavigation()
+  const [featuredCategories, setfeaturedCategories] = useState([])
   useLayoutEffect(() => {
     navigation.setOptions({
       // headerTitle:'Testing',
       headerShown:false,
     })
+  }, [])
+  async function fetchFeaturedCategories() {
+    let QUERY = encodeURIComponent(`*[_type == "featured"]{...,restaurents[]->{...,dishes[]->}}`);
+    let featuredCategoriesUrl = `https://4ckwkgpu.api.sanity.io/v2021-10-21/data/query/production?query=${QUERY}`
+    const response = await fetch(featuredCategoriesUrl)
+    const featuredCategories = await response.json();
+    return featuredCategories.result;
+  }
+
+  useEffect(() => {
+    fetchFeaturedCategories().then(cats => {
+      setfeaturedCategories(cats)
+    });
+    
   }, [])
   return (
     <SafeAreaView className="bg-white">
@@ -44,30 +61,20 @@ const HomeScreen = () => {
           <AdjustmentsVerticalIcon color="#00CCBB" />
         </View>
         {/* content */}
-        <ScrollView className="bg-gray-100 pt-2">
+        <ScrollView className="bg-gray-100 py-2">
           {/* categories */}
           <Categories />
-          {/* OFfers near you */}
-          <FeatureRow 
-            id="3"
-            title="Offers near you"
-            desc="why not support your local restaurant tonight!"
-            featuredCategory="featured"
-          />
-          {/* featured rows */}
-          <FeatureRow 
-            id="1"
-            title="Featured"
-            desc="Paid placements for our partners"
-            featuredCategory="featured"
-          />
-          {/* Tasty discounts */}
-          <FeatureRow 
-            id="2"
-            title="Tasty Discounts"
-            desc="Paid placements for our partners"
-            featuredCategory="Everyone's been enjoying these juicy discounts!"
-          />
+        </ScrollView>
+        <ScrollView>
+          {/* featured Rows */}
+          {featuredCategories.length >= 1 ? featuredCategories.map((category) => {
+            return <FeatureRow 
+                      key={category._id}
+                      id={category._id}
+                      title={category.name}
+                      desc={category.short_description}
+                    />
+          }) : ''}
         </ScrollView>
       </View>
 
