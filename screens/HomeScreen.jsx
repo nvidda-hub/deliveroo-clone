@@ -4,6 +4,7 @@ import { SafeAreaView, StyleSheet, Text, View, Image, TextInput, ScrollView } fr
 import { useNavigation } from '@react-navigation/native';
 import {AdjustmentsVerticalIcon, ChevronDownIcon, MagnifyingGlassIcon, UserIcon} from "react-native-heroicons/outline"
 import Categories from '../Components/Categories';
+import FeatureRow from '../Components/FeatureRow';
 
 const HomeScreen = () => {
   const navigation = useNavigation()
@@ -38,7 +39,7 @@ const HomeScreen = () => {
         <View className="flex-row mb-3 items-center">
           <View className="flex-row px-2 py-1 space-x-1 rounded-md bg-gray-100 flex-1 items-center">
             <MagnifyingGlassIcon color="#00CCBB" />
-            <TextInput placeholder='Search for Resturent...' keyboardType='default' />
+            <TextInput placeholder='Search for Restaurant...' keyboardType='default' />
           </View>
           <AdjustmentsVerticalIcon color="#00CCBB" />
         </View>
@@ -46,7 +47,27 @@ const HomeScreen = () => {
         <ScrollView className="bg-gray-100 pt-2">
           {/* categories */}
           <Categories />
+          {/* OFfers near you */}
+          <FeatureRow 
+            id="3"
+            title="Offers near you"
+            desc="why not support your local restaurant tonight!"
+            featuredCategory="featured"
+          />
           {/* featured rows */}
+          <FeatureRow 
+            id="1"
+            title="Featured"
+            desc="Paid placements for our partners"
+            featuredCategory="featured"
+          />
+          {/* Tasty discounts */}
+          <FeatureRow 
+            id="2"
+            title="Tasty Discounts"
+            desc="Paid placements for our partners"
+            featuredCategory="Everyone's been enjoying these juicy discounts!"
+          />
         </ScrollView>
       </View>
 
