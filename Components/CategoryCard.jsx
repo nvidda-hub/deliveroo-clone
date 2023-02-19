@@ -3,13 +3,17 @@ import React from 'react'
 
 const CategoryCard = (props) => {
   return (
-    <TouchableOpacity className="bg-white p-2 text-black font-bold shadow-xl">
-      <Text>{props.title}</Text>
+    <TouchableOpacity className="realtive bg-white p-1 mr-2 text-black font-bold shadow-xl">
       <Image source={{
-                    uri:props.imageUrl
+        uri:props.imageUrl
                 }}
             className="h-20 w-20"
-      />
+          />
+      {/* <Image
+              source={require(`${props.imageUrl}`)}              
+              className="w-[100px] h-[100px]"
+            /> */}
+      <Text className="absolute text-white text-lg bottom-1 left-2 font-bold">{props.title}</Text>
     </TouchableOpacity>
   )
 }
