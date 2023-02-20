@@ -42,9 +42,9 @@ const HomeScreen = () => {
               className="w-7 h-10"
             />
           </Text>
-          <View className="flex-1">
+          <View className="flex-1 ">
               <Text className="text-xs text-slate-400 font-bold">Deliver Now!</Text>
-              <Text className="text-xl text-slate-800 font-bold space-x-1 align-baseline">
+              <Text className="text-xl flex-row text-slate-800 font-bold space-x-1 items-center">
                 <Text>Current Location</Text>
                 <ChevronDownIcon color="#00CCBB"/>
 
@@ -61,11 +61,9 @@ const HomeScreen = () => {
           <AdjustmentsVerticalIcon color="#00CCBB" />
         </View>
         {/* content */}
-        <ScrollView className="bg-gray-100 py-2">
+        <ScrollView horizontal={false} className="bg-gray-100 py-2">
           {/* categories */}
           <Categories />
-        </ScrollView>
-        <ScrollView>
           {/* featured Rows */}
           {featuredCategories.length >= 1 ? featuredCategories.map((category) => {
             return <FeatureRow 
