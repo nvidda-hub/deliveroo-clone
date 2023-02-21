@@ -116,7 +116,7 @@ const BasketScreen = () => {
               ₹ {basketTotalForItems + 49} /-
             </Text>
           </View>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('PreparingOrder')}>
             <Text className="bg-[#00CCBB] text-xl px-5 py-3 flex text-center text-white font-extrabold mx-3 rounded-lg">
               Place order
             </Text>
