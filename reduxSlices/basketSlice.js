@@ -26,4 +26,5 @@ export const { addToBasket, removeFromBasket } = basketItemCounterSlice.actions
 export const selectedBasketItems = state => state.basket.items
 export const selectedBasketItemsWithId = (state, id) => state.basket.items.filter(item => item.id === id)
 
+export const basketTotal = state => state.basket.items.reduce((total, item) => total += item.price, 0)
 export default basketItemCounterSlice.reducer

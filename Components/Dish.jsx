@@ -28,7 +28,7 @@ const Dish = ({
         <View className="flex-col space-y-2 flex-1">
             <Text className="text-[18px] font-bold">{name}</Text>
             <Text className="text-gray-500 font-medium">{short_desc}</Text>
-            <Text className="text-gray-500">₹ {price} /-</Text>
+            <Text className="text-gray-500">₹ {price} /- </Text>
         </View>
         <Image source={{
                     uri:urlFor(imageUrl).url()

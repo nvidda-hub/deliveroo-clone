@@ -5,7 +5,6 @@ import { useNavigation } from '@react-navigation/native';
 import {AdjustmentsVerticalIcon, ChevronDownIcon, MagnifyingGlassIcon, UserIcon} from "react-native-heroicons/outline"
 import Categories from '../Components/Categories';
 import FeatureRow from '../Components/FeatureRow';
-import sanityClient from '../sanityConfigForFrontend';
 
 
 const HomeScreen = () => {
